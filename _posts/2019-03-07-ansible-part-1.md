@@ -57,7 +57,7 @@ The playbook to install is quite simple:
 {% highlight yml %}
 # main.yml
 - hosts: all 
-     tasks:
+  tasks:
      - name: install vim
        dnf:
          name: vim
