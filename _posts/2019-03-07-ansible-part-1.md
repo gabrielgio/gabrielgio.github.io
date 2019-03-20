@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Automating desktop setup with ansible-pull part 1"
+title:  "Automating desktop setup with ansible-pull part-1"
 date:   2019-03-07
 tags: ['ansible', 'ansible-pull', 'linux', 'fedora']
 ---
@@ -10,13 +10,13 @@ till I get to point where I was before formatting it, install all
 packages, select themes, icons, fonts, install IDEs, extensions and so
 on. After doing it a few times I came to the conclusion (
 [genius](https://i.imgur.com/BtWuQgT.png)) that It would be nice to
-automate this chore. And as a result, I could tinker a little more with
+automate this chore, and as a result, I could tinker a little more with
 my system and not be afraid of spending a weekend reinstalling
-everything (which have happened more time that I'd like)
+everything (which have happened more time that I'd likei to remenber)
 
-So after a few attempts using python and bash, I couldn't get something 
+So after a few attempts using python or/and bash, I couldn't get something 
 that scales and ended with many files and keep the files organized and
-concise turned to be more tedious than the setup itself. So it comes
+concise turned out to be more tedious than the setup itself. So it comes
 [Ansible](https://www.ansible.com/). It is an enterprise-grade software
 used to automate tasks. It has many features I can be really helpful as
 a sysadmin but what we gonna focus here is cliente side of thing using
@@ -34,12 +34,12 @@ as better describe:
 > language. They can describe a policy you want your remote systems to
 > enforce, or a set of steps in a general IT process.
 
-So what we're gonna do is pull a playbook from a git account a run on
-the host, that playbook will have the tasks that we need to setup our
+The next step is to pull a playbook from a git account and run on
+the host, the playbook will have tasks needed to setup our
 machine.
 
-To run it locally first we need localhost to all hosts list, to do so we
-only the following text to `/etc/ansible/hosts`:
+To run it locally first we need to add localhost to hosts list, to do so we
+only the following text added to `/etc/ansible/hosts`:
 
 {% highlight text %} 
 [all] 
@@ -67,7 +67,7 @@ The playbook to install is quite simple:
 Fist `hosts:` it is required and it has to match our hosts so we are
 able to run that playbook. Then `tasks:` which is a list of task that
 the playbook will perform that in this case will be `dnf install` for
-the package vim.
+the vim package.
 
 Ansible pull requires a repository but for the first example I want to
 keep it simple so we will use `ansible-playbook` commando to run
