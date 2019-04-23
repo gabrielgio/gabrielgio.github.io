@@ -27,6 +27,7 @@ The `yml` file will have two tasks, one is to install vim itself, identical as i
 The second task it to copy `.vimrc` file to your `$HOME`, for it we shall use [copy module](https://docs.ansible.com/ansible/latest/modules/copy_module.html):
 
 {% highlight yml %}
+# main.yml
 ---
 - name: copy vimrc file
   copy:
