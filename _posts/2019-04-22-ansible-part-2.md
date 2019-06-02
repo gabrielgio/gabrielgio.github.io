@@ -11,9 +11,9 @@ Now we're gonna setup ansible to work with a git repository. The process is quit
 
 Do create a git repository wherever you see fit ([gitlab](https://about.gitlab.com/) and [github](https://github.com/) offer free repositories). For this task we're gonna need to add only two file: one for the `yml` file describing the tasks and the `.vimrc` file.
 
-In the `.vimrc` add your own configuration, you can see mine [over here](https://github.com/gabrielgio/homestation/blob/241b27285d8cba8548277f3508e097439831a6eb/config/.vimrc), it is pretty simple as I don't use it but for simple text editing (like this post) so you can start with it if you don't have one.
+In the `.vimrc` add your own configuration, you can see mine [over here](https://github.com/gabrielgio/homestation/blob/241b27285d8cba8548277f3508e097439831a6eb/config/.vimrc), it is pretty simple as I don't use it but for simple text editing (like this post) so you can start with that if you don't have one.
 
-The `yml` file will have two tasks, one is to install vim itself, identical as it is in the part 1.
+The `yml` file will have two tasks, one is to install vim itself, identical as in the part 1.
 
 {% highlight yml %}
 # main.yml
@@ -24,7 +24,7 @@ The `yml` file will have two tasks, one is to install vim itself, identical as i
     state: latest
 {% endhighlight %}
 
-The second task it to copy `.vimrc` file to your `$HOME`, for it we shall use [copy module](https://docs.ansible.com/ansible/latest/modules/copy_module.html):
+To copy `.vimrc` file to your `$HOME` we going to use [copy module](https://docs.ansible.com/ansible/latest/modules/copy_module.html):
 
 {% highlight yml %}
 # main.yml
@@ -41,7 +41,7 @@ After adding those two files your repository will be something [like this](https
 And now we just need to run `ansible-pull` command
 
 {% highlight bash %}
-#you may need run it as a sudo
+# you may need run it as a sudo
 ansible-pull -U <YOUR_REPO> -i all main.yml
 {% endhighlight %} 
 
@@ -49,9 +49,9 @@ Params:
 * `-i` is a list of hosts. 
 * `-U` is the git repository url.
 
-Remember `man` is your best friend take a look at `man ansible-pull` to know more about the params.
+Remember `man` is your best friend take a look at `man ansible-pull` to know more about its parameters.
 
-The best part if you want to test quickly you can just run my sample and see the result:
+The best part you can quickly test and see the result by just running my sample:
 {% highlight bash %}
 ansible-pull -U https://github.com/gabrielgio/homestation.git -C debcf3458df511aef9f7dca0cb73f6cf6baddd5d -i all main.yml
 {% endhighlight %}
