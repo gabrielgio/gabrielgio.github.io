@@ -18,7 +18,8 @@ First install the following packages:
 sudo dnf install git autoconf make gcc texinfo gnutls-devel giflib-devel ncurses-devel libjpeg-turbo-devel giflib-devel gtk3-devel libXpm-devel
 {% endhighlight %}
 
-Then we need to clone de source code from [savannah.gnu.org](http://savannah.gnu.org/projects/emacs/)
+Then we need to clone the repo from [savannah.gnu.org](http://savannah.gnu.org/projects/emacs/) where is hosted 
+the source code of emacs:
 {% highlight bash %}
  git clone -b master git://git.sv.gnu.org/emacs.git
 {% endhighlight %}
