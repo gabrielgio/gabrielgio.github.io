@@ -9,8 +9,7 @@ github_username:  gabrielgio
 
 # Build settings
 markdown: kramdown
-layout: default
-theme: jekyll-theme-minimal
+theme: minima
 plugins:
   - jekyll-feed
 
