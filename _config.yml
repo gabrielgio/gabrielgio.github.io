@@ -3,9 +3,10 @@ email: gabriel.giovanini@pm.me
 description: >-
   Gabriel Giovanini's blog.
 baseurl: ""
-url: "https://gabrielgio.com.br"
+url: "https://www.gabrielgio.me"
 twitter_username: giovaninigabs
 github_username:  gabrielgio
+gitlab_username:  gabrielgio
 
 # Build settings
 markdown: kramdown

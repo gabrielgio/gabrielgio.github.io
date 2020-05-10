@@ -11,7 +11,7 @@ Now we're gonna setup ansible to work with a git repository. The process is quit
 
 Do create a git repository wherever you see fit ([gitlab](https://about.gitlab.com/) and [github](https://github.com/) offer free repositories). For this task we're gonna need to add only two file: one for the `yml` file describing the tasks and the `.vimrc` file.
 
-In the `.vimrc` add your own configuration, you can see mine [over here](https://github.com/gabrielgio/homestation/blob/241b27285d8cba8548277f3508e097439831a6eb/config/.vimrc), it is pretty simple as I don't use it but for simple text editing (like this post) so you can start with that if you don't have one.
+In the `.vimrc` add your own configuration, you can see mine [over here](https://gitlab.com/gabrielgio/homestation/-/blob/debcf3458df511aef9f7dca0cb73f6cf6baddd5d/.vimrc), it is pretty simple as I don't use it but for simple text editing (like this post) so you can start with that if you don't have one.
 
 The `yml` file will have two tasks, one is to install vim itself, identical as in the part 1.
 
@@ -36,7 +36,7 @@ To copy `.vimrc` file to your `$HOME` we going to use [copy module](https://docs
     mode: 0644
 {% endhighlight %}
 
-After adding those two files your repository will be something [like this](https://github.com/gabrielgio/homestation/tree/debcf3458df511aef9f7dca0cb73f6cf6baddd5d).
+After adding those two files your repository will be something [like this](https://gitlab.com/gabrielgio/homestation/-/tree/debcf3458df511aef9f7dca0cb73f6cf6baddd5d).
 
 And now we just need to run `ansible-pull` command
 
@@ -53,7 +53,7 @@ Remember `man` is your best friend take a look at `man ansible-pull` to know mor
 
 The best part you can quickly test and see the result by just running my sample:
 {% highlight bash %}
-ansible-pull -U https://github.com/gabrielgio/homestation.git -C debcf3458df511aef9f7dca0cb73f6cf6baddd5d -i all main.yml
+ansible-pull -U https://gitlab.com/gabrielgio/homestation.git -C debcf3458df511aef9f7dca0cb73f6cf6baddd5d -i all main.yml
 {% endhighlight %}
 
 The idea here is to keep your repository as a source of truth when comes to configuration, you can add this task to your cron tab, so you just need to push something to your repository and after a few minutes not only your machine but all the machines that have it setup will receive an update. You can use this method as a simple way to install software, update machines or even distribute tools company-wise.
