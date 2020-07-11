@@ -2,7 +2,6 @@ baseURL = "https://gabrielgio.me/"
 languageCode = "en-us"
 title = "Yet Another blog"
 theme = "flamingo"
-enableGitInfo = true
 
 [author]
     name = "Gabriel Giovanini"
