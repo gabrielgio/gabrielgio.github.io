@@ -1,0 +1,4 @@
+baseURL = "http://gabrielgio.com/"
+languageCode = "en-us"
+title = "Yet Another blog"
+theme = "flamingo"
