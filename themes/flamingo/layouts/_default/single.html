@@ -4,7 +4,10 @@
 			<h1>{{ .Title }}</h1>
 
 			{{ if .Date }}
-				<time>{{ .Date.Format "Jan 02, 2006" }}</time>
+				<time>Created At: {{ .Date.Format "02 Jan 2006" }}</time></br>
+			{{ end }}
+			{{ if .Lastmod }}
+				<time>Last Modified: {{ .Lastmod.Format  "02 Jan 2006"}}</time>
 			{{ end }}
 
 			{{ partial "tagbar.html" }}

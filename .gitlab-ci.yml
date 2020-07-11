@@ -15,7 +15,7 @@ test:
 
 pages:
   script:
-    - hugo
+    - hugo --enableGitInfo
   artifacts:
     paths:
       - public

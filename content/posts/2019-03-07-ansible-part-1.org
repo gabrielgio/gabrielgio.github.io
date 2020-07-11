@@ -1,0 +1,98 @@
+---
+layout:  post
+title:   "Automating setup with ansible-pull part-1"
+date:    2019-03-07
+tags:    ['ansible', 'ansible-pull', 'linux', 'fedora']
+---
+
+Every time that I do a clean install on my machine it takes a few hours till I
+get to point where I was before formatting it, install all packages, select
+themes, icons, fonts, install IDEs, extensions and so on. After doing it a few
+times I came to the conclusion that I would save time by spending time automating this chore, and
+as a result, I could tinker a little more with my system and not worry about
+spending a weekend re-installing everything (which have happened more time that
+I'd like to remember).
+
+<!--more-->
+
+So after a few attempts using python and bash I ended with many files and
+keep everything organized and concise turned out to be more tedious than the
+setup itself. So there comes [[https://www.ansible.com/][Ansible]]. It is an enterprise-graded software used
+to automate tasks. It has A LOT OF features and it can be really helpful if
+you're a sysadmin but for now we're going to focus on [[https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html#ansible-pull][Ansible Pull]] and
+[[https://docs.ansible.com/ansible/latest/user_guide/playbooks.html][Playbooks]]. As better described:
+
+#+BEGIN_QUOTE
+[Ansible-Pull] is used to up a remote copy of ansible on each managed node, each
+set to run via cron and update playbook source via a source repository. This
+inverts the default push architecture of Ansible into a pull architecture, which
+has near-limitless scaling potential.
+
+Playbooks are Ansible’s configuration, deployment, and orchestration language.
+They can describe a policy you want your remote systems to enforce, or a set of
+steps in a general IT process.
+
+[[https://docs.ansible.com/ansible/latest/cli/ansible-pull.html][source]]
+#+END_QUOTE
+
+The goal is to pull and run a playbook remotely using a git repository. The
+playbook will describe the tasks needed to setup our machine from scratch.
+
+But first lets tinker a bit a with playbooks locally with ~ansible-playbook~, to
+do so we need to add ~localhost~ to ansible's hosts list. Add it to
+~/etc/ansible/hosts~:
+
+#+BEGIN_SRC service
+[all]
+localhost
+#+END_SRC
+
+As an experiment we're going to write a asks to install vim. Currently, I'm using
+[[https://getfedora.org/][Fedora]] thus we going to use [[https://docs.ansible.com/ansible/latest/modules/dnf_module.html][dnf modeule]] to install packages, but if you're using
+another distribution look for a equivalent module like [[https://docs.ansible.com/ansible/latest/modules/apt_module.html][apt module]] for [[https://ubuntu.com/][Ubuntu]].
+
+The playbook to install is quite simple:
+
+#+BEGIN_SRC yaml
+# main.yaml
+- hosts: all
+  tasks:
+     - name: install vim
+       dnf:
+         name: vim
+         state: latest
+#+END_SRC
+
+~hosts:~ is required and it has to match our hosts otherwise the playbook won't
+run.
+
+~tasks:~  is the list of tasks that the playbook will perform, in this case will
+be ~dnf install vim~.
+
+To run a playbook use the command ~ansible-playbook~ commando to run
+~main.yml~ direct from disk, do to so just run the following command:
+
+#+BEGIN_SRC bash
+sudo ansible-playbook --connection=local main.yml
+#+END_SRC
+
+
+After a few seconds, vim will be installed on your machine.
+
+#+BEGIN_SRC
+PLAY [all] *************************************************************
+
+TASK [Gathering Facts] *************************************************
+ok: [localhost]
+
+TASK [install vim] *****************************************************
+ok: [localhost]
+
+PLAY RECAP *************************************************************
+localhost                  : ok=2    changed=0    unreachable=0    failed=0
+#+END_SRC
+
+
+This is the first step, next part we shall create a more complex playbook and
+setup repository to run it remotely using ~ansible-pull~.
+
