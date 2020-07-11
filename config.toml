@@ -1,4 +1,4 @@
-baseURL = "http://gabrielgio.com/"
+baseURL = "https://gabrielgio.me/"
 languageCode = "en-us"
 title = "Yet Another blog"
 theme = "flamingo"
