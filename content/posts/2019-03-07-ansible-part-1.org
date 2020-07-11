@@ -2,6 +2,7 @@
 layout:  post
 title:   "Automating setup with ansible-pull part-1"
 date:    2019-03-07
+lastmod: 2020-07-12
 tags:    ['ansible', 'ansible-pull', 'linux', 'fedora']
 ---
 

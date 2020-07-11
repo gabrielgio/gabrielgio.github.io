@@ -16,7 +16,7 @@ test:
 
 pages:
   script:
-    - hugo --enableGitInfo
+    - hugo
   artifacts:
     paths:
       - public
