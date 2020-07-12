@@ -3,19 +3,14 @@
 	<!-- title wrapper -->
 	<div class="title-wrapper">
 		<a href="/">
-			<h2 class="title">{{ .Site.Title }}</h2>
+			<h2 class="title" >{{ .Site.Title }}</h2>
 		</a>
 		<nav>
 			<ul>
-				<li><a href="/posts/">posts</a></li>
-				<li><a href="/projects/">projects</a></li>
-				<li><a href={{ .Site.Params.resume }} target="_blank">resume</a></li>
-				<!-- <li><a href="/resume/" target="_blank" >resume</a></li> -->
-			</ul>
+				<li><a class="{{ cond (eq .Title "Posts") "active-link" ""}}" href="/posts/">posts</a></li>
+				<li><a class="{{ cond (eq .Title "Logs") "active-link" ""}}" href="/logs/">logs</a></li>
 		</nav>
 	</div>
-	<!-- title wrapper end -->
-
 	{{ with .Site.Menus.main }}
 	<nav>
 		<ul>

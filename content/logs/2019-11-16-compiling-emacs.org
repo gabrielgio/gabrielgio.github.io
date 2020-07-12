@@ -1,0 +1,35 @@
+---
+title:  "Compiling emacs from source code on Fedora"
+date:   2019-11-16
+tags: ['emacs', 'emacs27', 'linux', 'fedora']
+---
+
+Compiling emacs from source and installing on fedora.
+
+* Installing Packages
+Install the following packages:
+#+BEGIN_SRC
+sudo dnf install git autoconf make gcc texinfo \
+    gnutls-devel giflib-devel ncurses-devel \
+    libjpeg-turbo-devel giflib-devel gtk3-devel \
+    libXpm-devel -y
+#+END_SRC
+
+* Cloning Repository
+Clone repository [[http://savannah.gnu.org/projects/emacs/][savannah.gnu.org]]:
+#+BEGIN_SRC
+git clone -b master git://git.sv.gnu.org/emacs.git
+#+END_SRC
+
+* Compiling
+Navigate to emacs folder (~cd emacs~) and execute the following steps
+
+#+BEGIN_SRC sh
+./autogen.sh
+./configure
+make -j$(nproc)
+sudo make install
+#+END_SRC
+
+After verify version with ~emacs --version~, it should be equal or higher than
+=28.0.50=.

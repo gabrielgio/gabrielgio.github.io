@@ -29,26 +29,4 @@
             {{ partial "footer" . }}
         </div>
     </body>
-
-    <script>
-     // TODO
-     // Use Hugo templating to achieve this
-     // Script to check active nav menu
-     (function() {
-         const links = document.querySelectorAll("nav a")
-         const currentUrl = location.href
-
-         for (const link of links) {
-             if (location.href.split("/").length === 4 && link.href.endsWith("/posts/")) {
-                 link.classList.add("active-link")
-                 break;
-             }
-
-             if (link.href === currentUrl) {
-                 link.classList.add("active-link")
-             }
-         }
-     }())
-    </script>
-
 </html>
