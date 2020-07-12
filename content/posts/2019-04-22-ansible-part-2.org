@@ -1,0 +1,75 @@
+---
+title:   "Automating desktop setup with ansible-pull part-2"
+date:    2019-04-22
+lastmod: 2020-07-12
+tags:    ['ansible', 'ansible-pull', 'linux', 'fedora']
+---
+
+[[{{< ref "2019-03-07-ansible-part-1.org " >}}][See part 1]]
+
+Now we're going to setup ansible to work with a git repository. The process is
+quite similar to ~ansible-playbook~, the only difference is that the source for
+the playbook will be a remote repository and not a local file. Following the
+previous example we'll get vim setup automated.
+
+Create a git repository wherever you see fit, [[https://about.gitlab.com/][gitlab]] and [[https://github.com/][github]] offer free
+repositories. For this task we need to add only two file: one for the
+~yml~ file describing the tasks and the ~.vimrc~ file.
+
+
+In the ~.vimrc~ add your own configuration, you can see mine [[https://gitlab.com/gabrielgio/homestation/-/blob/debcf3458df511aef9f7dca0cb73f6cf6baddd5d/.vimrc][over here]], it is
+pretty simple as I don't use it but for simple text editing (like this post) so
+you can start with that if you don't have one.
+
+The ~yml~ file will have two tasks, one is to install vim, just like we did in
+the part 1.
+
+#+BEGIN_SRC yaml
+# main.yml
+---
+- name: install vim
+  dnf:
+    name: vim
+    state: latest
+#+END_SRC
+
+To copy ~.vimrc~ file to your ~$HOME~ we going to use [[https://docs.ansible.com/ansible/latest/modules/copy_module.html][copy module]]:
+
+#+BEGIN_SRC yaml
+# main.yml
+---
+- name: copy vimrc file
+  copy:
+    src: config/.vimrc
+    dest: ~/
+    mode: 0644
+#+END_SRC
+
+After we've added those two files to repository you will have be something [[https://gitlab.com/gabrielgio/homestation/-/tree/debcf3458df511aef9f7dca0cb73f6cf6baddd5d][like
+this]].
+
+And now we just need to run ~ansible-pull~ command
+
+#+BEGIN_SRC shell
+# you may need run it as a sudo
+ansible-pull -U $YOUR_REPO -i all main.yml
+#+END_SRC
+
+Params:
+- *~-i~* is a list of hosts.
+- *~-U~* is the git repository URL.
+
+Remember ~man~ is your best friend, take a look at ~man ansible-pull~ to know
+more about its parameters.
+
+The best part you can quickly test and see the result by running my sample:
+#+BEGIN_SRC shell
+ansible-pull -U https://gitlab.com/gabrielgio/homestation.git -C debcf3458df511aef9f7dca0cb73f6cf6baddd5d -i all main.yml
+#+END_SRC
+
+The idea here is to keep your repository as a source of truth when comes to
+configuration, you can add ~ansible-pull~ to a CRON tab, so you just need to push
+something to your repository and after a few minutes not only your machine but
+all the machines that have it setup will run the playbooks. You can use this
+method as a simple way to install software, update machines or even distribute
+tooling company-wise.
