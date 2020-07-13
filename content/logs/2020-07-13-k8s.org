@@ -1,0 +1,38 @@
+---
+title:  "Road to local k8s"
+date:   2020-07-13
+tags: ['kubernetes', 'linux', 'fedora']
+---
+
+* Goal
+The goal is to deploy kubernetes on my local networks, and keep everything as
+reproducible as possible.
+
+* Stack
+
+I'll use Fedora Core OS, Matchbox and Terraform [fn:1], a match the requirements
+for Tectonic [fn:2]
+
+** Steps
+- Network Setup DHCP/TFTP/DNS [fn:3]
+- Matchbox [fn:4]
+- PXE network boot environment
+- Terraform Tectonic [fn:5]
+
+** Network Setup DHCP/TFTP/DNS
+** Matchbox
+** PXE network boot environment
+** Terraform Tectonic
+
+------
+* Links
+[fn:1]https://coreos.com/tectonic/docs/latest/install/bare-metal/metal-terraform.html
+
+[fn:2]https://coreos.com/tectonic/docs/latest/install/bare-metal/requirements.html
+
+[fn:3]https://coreos.com/matchbox/docs/latest/network-setup.html
+
+[fn:4]https://coreos.com/matchbox/docs/latest/deployment.html
+
+[fn:5]https://coreos.com/tectonic/releases/
+
