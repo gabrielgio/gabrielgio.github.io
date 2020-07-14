@@ -1,0 +1,16 @@
+---
+title:  "Friz.box turned off DHCP"
+date:   2020-07-14
+tags: ['fritz.box', 'DHCP']
+---
+
+If you turned off your DHCP server follow these steps to connect to FritzBox
+settings.
+
+- Set your computer IP to ~169.254.1.2~ and your mask to ~255.255.0.0~
+- Then go to ~169.254.1.1~, login and re-enable the DHCP server.
+
+On gnome turn the wired connection off on again to apply the settings.
+
+Note: why in the hell does FritzBox 7490 require a land-line telephone to be
+physically factory reset?
