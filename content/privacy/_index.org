@@ -1,0 +1,12 @@
++++
+title = "Privacy"
+author = ["gabrielgio"]
+layout = "single"
+draft = false
++++
+
+**I don't store any data period.**
+
+
+I don't track, make use of any analytic platform, or use any kind of proprietary
+javascript.
