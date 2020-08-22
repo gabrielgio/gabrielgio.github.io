@@ -1,0 +1,35 @@
+---
+title:  "Moveing from github to gitlab pages"
+date:   2020-09-22
+tags: ['gitlab']
+---
+
+This was quite simple, I had just to create a simple Gitlab pipeline job and
+publish to pages this is done by:
+
+#+BEGIN_SRC
+image: clojure:lein-2.7.0
+
+before_script:
+  - lein deps
+
+test:
+  script:
+    - lein test
+
+pages:
+  stage: deploy
+  script:
+    - lein package
+  artifacts:
+    paths:
+      - public
+  only:
+    - master
+
+#+END_SRC
+
+- before_script :: will download all the dependencies with ~lein deps~.
+- test :: is self explanatory.
+- pages :: will compile the cljs into js with ~lein package~ and publish it into
+  pages.
