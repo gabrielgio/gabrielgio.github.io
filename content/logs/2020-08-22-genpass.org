@@ -1,5 +1,5 @@
 ---
-title:  "Moveing from github to gitlab pages"
+title:  "Moving from Github to Gitlab pages"
 date:   2020-08-22
 tags: ['gitlab']
 ---
